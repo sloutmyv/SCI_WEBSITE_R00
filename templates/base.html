@@ -1,22 +1,16 @@
 <!doctype html>
 <html lang="en">
 <head>
+<title>{% block head_title %} MuyPicky.com {% endblock head_title %}</title>
 </head>
 <body>
-    <h1>Hello World !</h1>
-    <p> This is <code>{% verbatim %}{{ context_var }}{% endverbatim %}</code> example </p>
-    <p>
-    {% if bool_item %}
-    Random num : {{ num }}
-    {% endif %}
-    </p>
-    <p>
-    {% for el in some_list %}
-        {% if el|divisibleby:"2" %}
-            Even number :
-        {% endif %}
-        {{ el }}</br>
-    {% endfor %}
-
+<div class="container">
+<a href="/">Home</a>
+<a href="/about">About</a>
+<a href="/contact">Contact</a>
+{% block content %}
+<h1>MuyPicky.com</h1>
+{% endblock content %}
+</div>
 </body>
 </html>
