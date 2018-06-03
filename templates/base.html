@@ -2,15 +2,16 @@
 <html lang="en">
 <head>
 <title>{% block head_title %} MuyPicky.com {% endblock head_title %}</title>
+{% include "snippets/css.html" %}
 </head>
 <body>
+
 <div class="container">
-<a href="/">Home</a>
-<a href="/about">About</a>
-<a href="/contact">Contact</a>
+{% include "snippets/nav.html" %}
 {% block content %}
 <h1>MuyPicky.com</h1>
 {% endblock content %}
 </div>
+{% include "snippets/js.html" %}
 </body>
 </html>
