@@ -4,7 +4,19 @@
 </head>
 <body>
     <h1>Hello World !</h1>
-    <p>This is context : {{ var }}</p>
-    <p>Random num : {{ num }}</p>
+    <p> This is <code>{% verbatim %}{{ context_var }}{% endverbatim %}</code> example </p>
+    <p>
+    {% if bool_item %}
+    Random num : {{ num }}
+    {% endif %}
+    </p>
+    <p>
+    {% for el in some_list %}
+        {% if el|divisibleby:"2" %}
+            Even number :
+        {% endif %}
+        {{ el }}</br>
+    {% endfor %}
+
 </body>
 </html>
