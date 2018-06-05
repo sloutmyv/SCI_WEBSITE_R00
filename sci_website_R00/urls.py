@@ -20,6 +20,7 @@ from django.views.generic import TemplateView
 from restaurant.views import (
 restaurant_listview,
 RestaurantsListView,
+RestaurantDetailView,
 )
 
 
@@ -27,7 +28,8 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', TemplateView.as_view(template_name='home.html')),
     url(r'^restaurant/$', RestaurantsListView.as_view()),
-    url(r'^restaurant/(?P<slug>\w+)/$', RestaurantsListView.as_view()),
+    url(r'^restaurant/(?P<rest_id>\w+)/$', RestaurantDetailView.as_view()),
+    #url(r'^restaurant/(?P<slug>\w+)/$', RestaurantsListView.as_view()),
     url(r'^about$', TemplateView.as_view(template_name='about.html')),
     url(r'^contact$', TemplateView.as_view(template_name='contact.html')),
 ]

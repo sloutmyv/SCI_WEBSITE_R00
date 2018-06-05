@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block head_title %} {{ object.name }}|| {{ block.super }} {% endblock head_title %}
+
+{% block content %}
+<p> {{ object.name }} </p>
+<p> {{ object.location }} </p>
+<p> {{ object.category }} </p>
+
+{% endblock content %}
