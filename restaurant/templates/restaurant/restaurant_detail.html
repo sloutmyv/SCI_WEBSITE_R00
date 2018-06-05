@@ -3,8 +3,7 @@
 {% block head_title %} {{ object.name }}|| {{ block.super }} {% endblock head_title %}
 
 {% block content %}
-<p> {{ object.name }} </p>
-<p> {{ object.location }} </p>
-<p> {{ object.category }} </p>
+<h1> {{ object.name }} </h1>
+<p> Situé à : {{ object.location }}  |   Spécialité : {{ object.category }} </p>
 
 {% endblock content %}
