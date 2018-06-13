@@ -6,6 +6,16 @@ from django.views import View
 from django.views.generic import TemplateView, ListView, DetailView
 
 from .models import Restaurant
+from .forms import RestaurantCreateForm
+
+def restaurant_createview(request):
+    if request.method == 'GET':
+        print('get data')
+    if request.method == 'POST':
+        print('post data')
+    template_name = 'restaurant/forms.html'
+    context = {}
+    return render(request,template_name,context)
 
 def restaurant_listview(request):
     template_name = 'restaurant/restaurant_list.html'

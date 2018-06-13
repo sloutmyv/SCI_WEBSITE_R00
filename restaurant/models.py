@@ -29,4 +29,3 @@ def rl_pre_save_receiver(sender, instance, *args, **kwargs):
 #     print(instance.timestamp)
 
 pre_save.connect(rl_pre_save_receiver, sender=Restaurant)
-# post_save.connect(rl_post_save_receiver, sender=Restaurant)
