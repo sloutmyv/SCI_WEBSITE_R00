@@ -1,5 +1,5 @@
 from django.db.models import Q
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 
 from django.views import View
@@ -9,12 +9,21 @@ from .models import Restaurant
 from .forms import RestaurantCreateForm
 
 def restaurant_createview(request):
-    if request.method == 'GET':
-        print('get data')
-    if request.method == 'POST':
-        print('post data')
+    form = RestaurantCreateForm(request.POST or None)
+    errors = None
+    if form.is_valid():
+        print('valid data')
+        obj = Restaurant.objects.create(
+            name = form.cleaned_data.get('name'),
+            location = form.cleaned_data.get('location'),
+            category = form.cleaned_data.get('category'),
+        )
+        return HttpResponseRedirect('/restaurant/')
+    if form.errors:
+        errors = form.errors
+
     template_name = 'restaurant/forms.html'
-    context = {}
+    context = {"form":form, "errors":errors}
     return render(request,template_name,context)
 
 def restaurant_listview(request):
