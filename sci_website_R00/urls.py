@@ -21,14 +21,15 @@ from restaurant.views import (
 restaurant_listview,
 RestaurantsListView,
 RestaurantDetailView,
-RestaurantCreateView,
+# RestaurantCreateView,
+restaurant_createview,
 )
 
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', TemplateView.as_view(template_name='home.html')),
-    url(r'^restaurant/create/$', RestaurantCreateView.as_view()),
+    url(r'^restaurant/create/$', restaurant_createview), #RestaurantCreateView.as_view()),
     url(r'^restaurant/$', RestaurantsListView.as_view()),
     url(r'^restaurant/(?P<slug>[\w-]+)/$', RestaurantDetailView.as_view()),
     #url(r'^restaurant/(?P<slug>\w+)/$', RestaurantsListView.as_view()),
