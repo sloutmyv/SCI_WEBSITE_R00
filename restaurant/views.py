@@ -8,35 +8,39 @@ from django.views.generic import TemplateView, ListView, DetailView, CreateView
 from .models import Restaurant
 from .forms import RestaurantCreateForm
 
-def restaurant_createview(request):
-    form = RestaurantCreateForm(request.POST or None)
-    errors = None
-    if form.is_valid():
-        if request.user.is_authenticated():
-            instance = form.save(commit=False)
-            instance.user = request.user
-            instance.save()
-            # print('valid data')
-            # obj = Restaurant.objects.create(
-            #     name = form.cleaned_data.get('name'),
-            #     location = form.cleaned_data.get('location'),
-            #     category = form.cleaned_data.get('category'),
-            # )
-            return HttpResponseRedirect('/restaurant/')
-        else:
-            return HttpResponseRedirect('/login/')
-    if form.errors:
-        errors = form.errors
-
-    template_name = 'restaurant/forms.html'
-    context = {"form":form, "errors":errors}
-    return render(request,template_name,context)
-
-# class RestaurantCreateView(CreateView):
-#     form_class = RestaurantCreateForm
+# def restaurant_createview(request):
+#     form = RestaurantCreateForm(request.POST or None)
+#     errors = None
+#     if form.is_valid():
+#         if request.user.is_authenticated():
+#             instance = form.save(commit=False)
+#             instance.user = request.user
+#             instance.save()
+#             # print('valid data')
+#             # obj = Restaurant.objects.create(
+#             #     name = form.cleaned_data.get('name'),
+#             #     location = form.cleaned_data.get('location'),
+#             #     category = form.cleaned_data.get('category'),
+#             # )
+#             return HttpResponseRedirect('/restaurant/')
+#         else:
+#             return HttpResponseRedirect('/login/')
+#     if form.errors:
+#         errors = form.errors
+#
 #     template_name = 'restaurant/forms.html'
-#     success_url = '/restaurant/'
+#     context = {"form":form, "errors":errors}
+#     return render(request,template_name,context)
 
+class RestaurantCreateView(CreateView):
+    form_class = RestaurantCreateForm
+    template_name = 'restaurant/forms.html'
+    success_url = '/restaurant/'
+
+    def form_valid(self, form):
+        instance = form.save(commit=False)
+        instance.user = self.request.user
+        return super(RestaurantCreateView, self).form_valid(form)
 
 def restaurant_listview(request):
     template_name = 'restaurant/restaurant_list.html'
