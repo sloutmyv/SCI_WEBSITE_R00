@@ -1,3 +1,5 @@
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
@@ -8,6 +10,7 @@ from django.views.generic import TemplateView, ListView, DetailView, CreateView
 from .models import Restaurant
 from .forms import RestaurantCreateForm
 
+# @login_required(login_url='/login/')
 # def restaurant_createview(request):
 #     form = RestaurantCreateForm(request.POST or None)
 #     errors = None
@@ -32,8 +35,9 @@ from .forms import RestaurantCreateForm
 #     context = {"form":form, "errors":errors}
 #     return render(request,template_name,context)
 
-class RestaurantCreateView(CreateView):
+class RestaurantCreateView(LoginRequiredMixin, CreateView):
     form_class = RestaurantCreateForm
+    login_url='/login/'
     template_name = 'restaurant/forms.html'
     success_url = '/restaurant/'
 
