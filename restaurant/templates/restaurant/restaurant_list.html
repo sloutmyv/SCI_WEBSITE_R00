@@ -7,7 +7,8 @@
 
 <ul>
 {% for el in object_list %}
-    <li><a href="/restaurant/{{ el.slug }}">{{ el.name }} - </a> Since : {{ el.updated }}</li>
+    <li><a href="{{el.get_absolute_url}}">{{ el.name }} - </a> Since : {{ el.updated }}</li>
+    <!-- <li><a href="/restaurant/{{ el.slug }}">{{ el.name }} - </a> Since : {{ el.updated }}</li> -->
 {% endfor %}
 </ul>
 
