@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', TemplateView.as_view(template_name='home.html'), name='home'),
     url(r'^restaurant/', include('restaurant.urls', namespace='restaurant')),
+    url(r'^items/', include('menus.urls', namespace='menus')),
     url(r'^login/', LoginView.as_view(), name='login'),
     url(r'^password_reset/', PasswordResetView.as_view(), name='password_reset'),
     url(r'^about$', TemplateView.as_view(template_name='about.html'), name='about'),
