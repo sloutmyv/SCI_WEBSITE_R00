@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block head_title %} {{ form.instance.name }}|| {{ block.super }} {% endblock head_title %}
+
+{% block content %}
+<h1> {{ form.instance.name }} </h1>
+<p> Situé à : {{ form.instance.location }}  |   Spécialité : {{ form.instance.category }} </p>
+<p> Creator : {{ form.instance.user }} </p>
+<p><li><a href="/restaurant/">Back</a></p>
+
+<hr/>
+<h3> Make Changes </h3>
+{% include 'snippets/form-snippet.html' with form=form %}
+
+
+{% endblock content %}

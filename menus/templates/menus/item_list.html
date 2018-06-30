@@ -3,7 +3,7 @@
 {% block head_title %} Menus Items || {{ block.super }} {% endblock head_title %}
 
 {% block content %}
-<h1> Menus Items </h1>
+<h1> Menus Items <small><a href='{% url "menus:create" %}'>Create</a></small></h1>
 
 <ul>
 {% for el in object_list %}

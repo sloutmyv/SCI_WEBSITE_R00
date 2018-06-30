@@ -3,14 +3,18 @@
 {% block head_title %} Restaurant || {{ block.super }} {% endblock head_title %}
 
 {% block content %}
-<h1> Restaurant List </h1>
+<h1> My restaurant <small><a href="{% url 'restaurant:create' %}">Add new restaurant</a></small></h1>
 
 <ul>
 {% for el in object_list %}
     <li><a href="{{el.get_absolute_url}}">{{ el.name }} - </a> Since : {{ el.updated }}</li>
     <!-- <li><a href="/restaurant/{{ el.slug }}">{{ el.name }} - </a> Since : {{ el.updated }}</li> -->
+{% empty %}
+    <a href="{% url 'restaurant:create' %}">Add a restaurant</a>
+
+
 {% endfor %}
 </ul>
 
-<a href="/restaurant/create/">Add a restaurant</a>
+
 {% endblock content %}
