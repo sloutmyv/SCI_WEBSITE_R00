@@ -14,4 +14,10 @@
 <input type='text' name='category' placeholder="Your category"></br> -->
 <button type='submit'>Save</button>
 </form>
+
+
+{% if form.instance %}
+<h1>{{ form.instance.name }}</h1>
+{% endif %}
+
 {% endblock content %}
