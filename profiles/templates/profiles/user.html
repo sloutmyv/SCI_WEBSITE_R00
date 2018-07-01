@@ -6,17 +6,27 @@
 <h1> {{ user.username }}  </h1>
 </hr>
 {% for rest in user.restaurant_set.all %}
-    <li> {{ rest.title }} | {{ rest.location }}
-        <ul>
-            {% for item in rest.item_set.all %}
-                <li>{{ item.name }}<br/>
-                    {% for ing in item.get_contents %}
-                    {{ ing }}
+    <div class='row'>
+    <!-- style='border: 1px solid #ccc; border-radius: 5px; margin-bottom: 15px' -->
+        <div class='col-sm-12'>
+            <div class='card card-default'>
+                <h1>{{ rest.title }}</h1>
+                <p>{{ rest.location }} | {{ rest.category }}</p>
+                <p>
+                    <b>{{ Items }}</b>
+                <ul>
+                    {% for item in rest.item_set.all %}
+                        <li>{{ item.name }}<br/>
+                            {% for ing in item.get_contents %}
+                                <span class='badge badge-default'>{{ ing }}</span>
+                            {% endfor %}
+                        </li>
                     {% endfor %}
-                </li>
-            {% endfor %}
-        </ul>
-    </li>
+                </ul>
+                </p>
+            </div>
+        </div>
+    </div>
 {% endfor %}
 
 
